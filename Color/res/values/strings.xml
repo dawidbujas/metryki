@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Color</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="zadanie_tresc">Używając suwaków ustaw w okienku po lewej stronie taki sam kolor, jaki znajduje się w okienku po prawej.</string>
+    <string name="zadanie_tytul">Zadanie</string>
+    <string name="rgb">rgb(0,0,0)</string>
+    <string name="przycisk">Porównaj!</string>
+    <string name="instrukcja">Proszę jeszcze o wypełnienie krótkiej ankiety.
+        Odpowiedź "1" oznacza "zdecydowanie nie", odpowiedź "5" to "zdecydowanie tak".</string>
+    <string name="pytanie1">Będę często korzystał z systemu.</string>
+    <string name="pytanie2">System jest niepotrzebnie skomplikowany.</string>
+    <string name="pytanie3">System jest łatwy w użyciu.</string>
+    <string name="pytanie4">Będę potrzebował wparcia technicznego, aby korzystać z systemu.</string>
+    <string name="pytanie5">Różne funkcje systemu są łatwo dostępne.</string>
+    <string name="pytanie6">W systemie jest zbyt wiele niespójności.</string>
+    <string name="pytanie7">Większość osób będzie w stanie opanować system bardzo szybko.</string>
+    <string name="pytanie8">System jest kłopotliwy w użyciu.</string>
+    <string name="pytanie9">Czuję się bardzo pewnie korzystając z systemu.</string>
+    <string name="pytanie10">Musiałem opanować wiele rzeczy przed rozpoczęciem pracy z systemem.</string>
+    <string name="min">1</string>
+    <string name="max">5</string>
+
+    <color name="czarny">#000000</color>
+
+    <string name="title_activity_survey">Survey</string>
+    <string name="title_activity_ending">Results</string>
+    
+    <string name="wynik_opis">Wynik testu System Usability</string>
+    <string name="czas_opis">Czas wykonania ćwiczenia</string>
+    <string name="wynik">0.0</string>
+    <string name="czas">0 sekund</string>
+
+</resources>
