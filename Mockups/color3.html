@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+    
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+<title>Color 3</title>
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+<link rel="Stylesheet" media="screen" type="text/css" href="mail.css" title="main" />
+
+<script>
+time = 0;
+clicks = 0;
+failures = 0;
+
+ankieta =
+'<ol>Proszę jeszcze o wypełnienie krótkiej ankiety.<br />' +
+'Odpowiedź "1" oznacza "zdecydowanie nie", odpowiedź "5" to "zdecydowanie tak".<br /><br />' +
+'<li>Będę często korzystał z systemu.<br />' +
+'<input type="radio" name="pytanie1" value="1" />1' +
+'<input type="radio" name="pytanie1" value="2" />2' +
+'<input type="radio" name="pytanie1" value="3" />3' +
+'<input type="radio" name="pytanie1" value="4" />4' +
+'<input type="radio" name="pytanie1" value="5" />5' +
+'</li>' +
+'<li>System jest niepotrzebnie skomplikowany.<br />' +
+'<input type="radio" name="pytanie2" value="1" />1' +
+'<input type="radio" name="pytanie2" value="2" />2' +
+'<input type="radio" name="pytanie2" value="3" />3' +
+'<input type="radio" name="pytanie2" value="4" />4' +
+'<input type="radio" name="pytanie2" value="5" />5' +
+'</li>' +
+'<li>System jest łatwy w użyciu.<br />' +
+'<input type="radio" name="pytanie3" value="1" />1' +
+'<input type="radio" name="pytanie3" value="2" />2' +
+'<input type="radio" name="pytanie3" value="3" />3' +
+'<input type="radio" name="pytanie3" value="4" />4' +
+'<input type="radio" name="pytanie3" value="5" />5' +
+'</li>' +
+'<li>Będę potrzebował wparcia technicznego, aby korzystać z systemu.<br />' +
+'<input type="radio" name="pytanie4" value="1" />1' +
+'<input type="radio" name="pytanie4" value="2" />2' +
+'<input type="radio" name="pytanie4" value="3" />3' +
+'<input type="radio" name="pytanie4" value="4" />4' +
+'<input type="radio" name="pytanie4" value="5" />5' +
+'</li>' +
+'<li>Różne funkcje systemu są łatwo dostępne.<br />' +
+'<input type="radio" name="pytanie5" value="1" />1' +
+'<input type="radio" name="pytanie5" value="2" />2' +
+'<input type="radio" name="pytanie5" value="3" />3' +
+'<input type="radio" name="pytanie5" value="4" />4' +
+'<input type="radio" name="pytanie5" value="5" />5' +
+'</li>' +
+'<li>W systemie jest zbyt wiele niespójności.<br />' +
+'<input type="radio" name="pytanie6" value="1" />1' +
+'<input type="radio" name="pytanie6" value="2" />2' +
+'<input type="radio" name="pytanie6" value="3" />3' +
+'<input type="radio" name="pytanie6" value="4" />4' +
+'<input type="radio" name="pytanie6" value="5" />5' +
+'</li>' +
+'<li>Większość osób będzie w stanie opanować system bardzo szybko.<br />' +
+'<input type="radio" name="pytanie7" value="1" />1' +
+'<input type="radio" name="pytanie7" value="2" />2' +
+'<input type="radio" name="pytanie7" value="3" />3' +
+'<input type="radio" name="pytanie7" value="4" />4' +
+'<input type="radio" name="pytanie7" value="5" />5' +
+'</li>' +
+'<li>System jest kłopotliwy w użyciu.<br />' +
+'<input type="radio" name="pytanie8" value="1" />1' +
+'<input type="radio" name="pytanie8" value="2" />2' +
+'<input type="radio" name="pytanie8" value="3" />3' +
+'<input type="radio" name="pytanie8" value="4" />4' +
+'<input type="radio" name="pytanie8" value="5" />5' +
+'</li>' +
+'<li>Czuję się bardzo pewnie korzystając z systemu.<br />' +
+'<input type="radio" name="pytanie9" value="1" />1' +
+'<input type="radio" name="pytanie9" value="2" />2' +
+'<input type="radio" name="pytanie9" value="3" />3' +
+'<input type="radio" name="pytanie9" value="4" />4' +
+'<input type="radio" name="pytanie9" value="5" />5' +
+'</li>' +
+'<li>Musiałem opanować wiele rzeczy przed rozpoczęciem pracy z systemem.<br />' +
+'<input type="radio" name="pytanie10" value="1" />1' +
+'<input type="radio" name="pytanie10" value="2" />2' +
+'<input type="radio" name="pytanie10" value="3" />3' +
+'<input type="radio" name="pytanie10" value="4" />4' +
+'<input type="radio" name="pytanie10" value="5" />5' +
+'</ol>' +
+'<button onclick="zakoncz()">Wyślij!</button>';
+
+
+function porownaj() {
+	color1 = document.getElementById("myColor").style.backgroundColor;
+	color2 = document.getElementById("predefined").style.backgroundColor;
+	dobrze = (color1==color2);
+	if (dobrze) {
+		d = new Date();
+		time = d.getTime() - time;
+		document.body.onclick = "";
+		alert("Udało się ustawić taki sam kolor.");
+		document.getElementById("data").innerHTML=ankieta;
+	}
+	else {
+		failures = failures + 1;
+		alert("Te kolory nie są takie same.");
+	}
+}
+
+function change() {
+	r = document.getElementsByTagName("input")[2].value;
+	g = document.getElementsByTagName("input")[0].value;
+	b = document.getElementsByTagName("input")[1].value;
+	document.getElementById("myColor").style.backgroundColor="rgb("+r+","+g+","+b+")";
+	document.getElementById("myRGB").innerHTML="rgb("+r+","+g+","+b+")";
+}
+
+function start() {
+	d = new Date();
+	time = d.getTime();
+}
+
+function zakoncz() {
+	wynik = 0;
+	for (var i=1; i<=10; ++i) {
+		odp = parseInt(getCheckedRadioId("pytanie"+i),10);
+		if (odp==0) return;
+		if (i%2==1)
+			wynik = wynik + odp - 1;
+		else
+			wynik = wynik + 5 - odp;
+	}
+	wynik = wynik * 2.5;
+	document.getElementById("data").innerHTML =
+	'Wynik testu System Usability Scale: ' + wynik + '<br /><br />' +
+	'Czas wykonania: ' + time + ' ms<br />' +
+	'Liczba błędów: ' + failures + '<br />' +
+	'Liczba kliknięć: ' + clicks + '<br />';
+}
+
+function incClicks() {
+	clicks = clicks + 1;
+}
+
+function getCheckedRadioId(name) {
+    var elements = document.getElementsByName(name);
+
+    for (var i=0, len=elements.length; i<len; ++i)
+        if (elements[i].checked)
+			return elements[i].value;
+	return 0;
+}
+
+</script>
+
+</head>
+<body onload="start()" onclick="incClicks()">
+
+<div id="title">
+<h1 onclick="incClicks()">Rozpoznawanie kolorów PRO</h1>
+</div>
+
+<div id="contents">
+<h2>Zadanie:</h2>
+<p>Używając suwaków ustaw w okienku po lewej stronie taki sam kolor, jaki znajduje się w okienku po prawej.</p>
+</div>
+
+<div id="data">
+Witaj w najlepszym treningu rozpoznawania kolorów! Dzięki za pomoc w realizacji projektu :).<br />
+Swoje zadanie znajdziesz po lewej stronie na żółtym tle.<br /><br /><br />
+<input type="range" name="B" min="0" max="256" value="0" onchange = "change()" style="width: 400px;"><br />
+<input type="range" name="R" min="0" max="256" value="0" onchange = "change()" style="width: 400px;"><br />
+<input type="range" name="G" min="0" max="256" value="0" onchange = "change()" style="width: 400px;"><br /><br />
+<table height="200px">
+<tr><td id="myColor" style="background-color: #000000" width="20%"></td>
+<td id="predefined" style="background-color: #5F91A7" width="20%"></td></tr>
+<tr height="20%"><td id="myRGB">rgb(0, 0, 0)</td>
+<td id="predefinedRGB"></td> 
+</table><br />
+<button onclick="porownaj()">Porównaj!</button>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+    
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+<title>Mail 1</title>
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+<link rel="Stylesheet" media="screen" type="text/css" href="mail.css" title="main" />
+
+<script>
+time = 0;
+clicks = 0;
+failures = 0;
+
+nowa = 
+'Adres: <textarea id="adres" rows="1"></textarea><br />' +
+'Temat: <textarea rows="1"></textarea><br />' +
+'&nbsp;Treść: <textarea id="tresc" rows="12"></textarea><br /><br />' +
+'<button onclick="wyslij()">Wyślij!</button>';
+
+odebrane =
+'<table>' +
+'<tr><th>Data</th><th>Nadawca</th><th>Temat</th></tr>' +
+'<tr onclick="otworz(false)"><td>2014-04-20</td><td>Anna Kwiecień</td><td>Życzenia świąteczne</td></tr>' +
+'<tr onclick="otworz(false)"><td>2014-04-21</td><td>Adam Majewski</td><td>brak tematu</td></tr>' +
+'<tr onclick="otworz(false)"><td>2014-04-22</td><td>Katarzyna Czerwiec</td><td>brak tematu</td></tr>' +
+'<tr onclick="otworz(true)"><td>2014-04-23</td><td>Jan Kowalski</td><td>brak tematu</td></tr>' +
+'<tr onclick="otworz(false)"><td>2014-04-24</td><td>Joanna Jabłońska</td><td>brak tematu</td></tr>' +
+'<tr onclick="otworz(false)"><td>2014-04-25</td><td>Marcin Marcinkowski</td><td>brak tematu</td></tr>' +
+'</table>';
+
+puste =
+'<table>' +
+'<tr><th width="3%">Data</th><th width="20%">Nadawca</th><th>Temat</th></tr>' +
+'</table>';
+
+ankieta =
+'<ol>Proszę jeszcze o wypełnienie krótkiej ankiety.<br />' +
+'Odpowiedź "1" oznacza "zdecydowanie nie", odpowiedź "5" to "zdecydowanie tak".<br /><br />' +
+'<li>Będę często korzystał z systemu.<br />' +
+'<input type="radio" name="pytanie1" value="1" />1' +
+'<input type="radio" name="pytanie1" value="2" />2' +
+'<input type="radio" name="pytanie1" value="3" />3' +
+'<input type="radio" name="pytanie1" value="4" />4' +
+'<input type="radio" name="pytanie1" value="5" />5' +
+'</li>' +
+'<li>System jest niepotrzebnie skomplikowany.<br />' +
+'<input type="radio" name="pytanie2" value="1" />1' +
+'<input type="radio" name="pytanie2" value="2" />2' +
+'<input type="radio" name="pytanie2" value="3" />3' +
+'<input type="radio" name="pytanie2" value="4" />4' +
+'<input type="radio" name="pytanie2" value="5" />5' +
+'</li>' +
+'<li>System jest łatwy w użyciu.<br />' +
+'<input type="radio" name="pytanie3" value="1" />1' +
+'<input type="radio" name="pytanie3" value="2" />2' +
+'<input type="radio" name="pytanie3" value="3" />3' +
+'<input type="radio" name="pytanie3" value="4" />4' +
+'<input type="radio" name="pytanie3" value="5" />5' +
+'</li>' +
+'<li>Będę potrzebował wparcia technicznego, aby korzystać z systemu.<br />' +
+'<input type="radio" name="pytanie4" value="1" />1' +
+'<input type="radio" name="pytanie4" value="2" />2' +
+'<input type="radio" name="pytanie4" value="3" />3' +
+'<input type="radio" name="pytanie4" value="4" />4' +
+'<input type="radio" name="pytanie4" value="5" />5' +
+'</li>' +
+'<li>Różne funkcje systemu są łatwo dostępne.<br />' +
+'<input type="radio" name="pytanie5" value="1" />1' +
+'<input type="radio" name="pytanie5" value="2" />2' +
+'<input type="radio" name="pytanie5" value="3" />3' +
+'<input type="radio" name="pytanie5" value="4" />4' +
+'<input type="radio" name="pytanie5" value="5" />5' +
+'</li>' +
+'<li>W systemie jest zbyt wiele niespójności.<br />' +
+'<input type="radio" name="pytanie6" value="1" />1' +
+'<input type="radio" name="pytanie6" value="2" />2' +
+'<input type="radio" name="pytanie6" value="3" />3' +
+'<input type="radio" name="pytanie6" value="4" />4' +
+'<input type="radio" name="pytanie6" value="5" />5' +
+'</li>' +
+'<li>Większość osób będzie w stanie opanować system bardzo szybko.<br />' +
+'<input type="radio" name="pytanie7" value="1" />1' +
+'<input type="radio" name="pytanie7" value="2" />2' +
+'<input type="radio" name="pytanie7" value="3" />3' +
+'<input type="radio" name="pytanie7" value="4" />4' +
+'<input type="radio" name="pytanie7" value="5" />5' +
+'</li>' +
+'<li>System jest kłopotliwy w użyciu.<br />' +
+'<input type="radio" name="pytanie8" value="1" />1' +
+'<input type="radio" name="pytanie8" value="2" />2' +
+'<input type="radio" name="pytanie8" value="3" />3' +
+'<input type="radio" name="pytanie8" value="4" />4' +
+'<input type="radio" name="pytanie8" value="5" />5' +
+'</li>' +
+'<li>Czuję się bardzo pewnie korzystając z systemu.<br />' +
+'<input type="radio" name="pytanie9" value="1" />1' +
+'<input type="radio" name="pytanie9" value="2" />2' +
+'<input type="radio" name="pytanie9" value="3" />3' +
+'<input type="radio" name="pytanie9" value="4" />4' +
+'<input type="radio" name="pytanie9" value="5" />5' +
+'</li>' +
+'<li>Musiałem opanować wiele rzeczy przed rozpoczęciem pracy z systemem.<br />' +
+'<input type="radio" name="pytanie10" value="1" />1' +
+'<input type="radio" name="pytanie10" value="2" />2' +
+'<input type="radio" name="pytanie10" value="3" />3' +
+'<input type="radio" name="pytanie10" value="4" />4' +
+'<input type="radio" name="pytanie10" value="5" />5' +
+'</ol>' +
+'<button onclick="zakoncz()">Wyślij!</button>';
+
+function data(n) {
+	switch(n) {
+	case 1:
+		document.getElementById("data").innerHTML=nowa;
+		break;
+	case 2:
+		document.getElementById("data").innerHTML=odebrane;
+		break;
+	default: 
+		document.getElementById("data").innerHTML=puste;
+	}
+}
+
+function otworz(dobre) {
+	if(dobre)
+		document.getElementById("data").innerHTML="Tajne hasło: M*$Fjf%dv";
+	else
+		document.getElementById("data").innerHTML="Jakaś wiadomość";
+}
+
+function wyslij() {
+	adresat = document.getElementById("adres").value;
+	tresc = document.getElementById("tresc").value;
+	dobrze = (adresat=="znamhaslo@gmail.com" && tresc.indexOf("M*$Fjf%dv") != -1);
+	if (dobrze) {
+		d = new Date();
+		time = d.getTime() - time;
+		document.body.onclick = "";
+		document.getElementById("data").innerHTML=ankieta;
+	}
+	else {
+		failures = failures + 1;
+		document.getElementById("data").innerHTML=nowa;
+	}
+}
+
+function start() {
+	d = new Date();
+	time = d.getTime();
+}
+
+function zakoncz() {
+	wynik = 0;
+	for (var i=1; i<=10; ++i) {
+		odp = parseInt(getCheckedRadioId("pytanie"+i),10);
+		if (odp==0) return;
+		if (i%2==1)
+			wynik = wynik + odp - 1;
+		else
+			wynik = wynik + 5 - odp;
+	}
+	wynik = wynik * 2.5;
+	document.getElementById("data").innerHTML =
+	'Wynik testu System Usability Scale: ' + wynik + '<br /><br />' +
+	'Czas wykonania: ' + time + ' ms<br />' +
+	'Liczba błędów: ' + failures + '<br />' +
+	'Liczba kliknięć: ' + clicks + '<br />';
+}
+
+function incClicks() {
+	clicks = clicks + 1;
+}
+
+function getCheckedRadioId(name) {
+    var elements = document.getElementsByName(name);
+
+    for (var i=0, len=elements.length; i<len; ++i)
+        if (elements[i].checked)
+			return elements[i].value;
+	return 0;
+}
+
+</script>
+
+</head>
+<body onload="start()" onclick="incClicks()">
+
+<div id="title">
+<h1 onclick="incClicks()">Super wypaśna poczta</h1>
+</div>
+
+<div id="contents">
+<ul>
+    <li onclick="data(1)">Nowa wiadomość</li>
+    <li onclick="data(2)">Odebrane</li>
+    <li onclick="data(3)">Wysłane</li>
+    <li onclick="data(4)">Kopie robocze</li>
+    <li onclick="data(5)">Kosz</li>
+    <li onclick="data(6)">Spam</li>
+</ul>
+<br /><br /><br />
+<h2>Zadanie:</h2>
+<p>Odszukać w skrzynce odbiorczej wiadomość od Jana Kowalskiego, a następnie znalezione w niej sekretne hasło wysłać na adres znamhaslo@gmail.com</p>
+</div>
+
+<div id="data">
+Witaj w najlepszej poczcie świata. Dzięki za pomoc w realizacji projektu :).<br />
+Swoje zadanie znajdziesz po lewej stronie na żółtym tle.
+</div>
+
+</body>
+</html>

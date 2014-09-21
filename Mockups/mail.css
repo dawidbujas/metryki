@@ -1,0 +1,107 @@
+body {
+    font-family: Arial;
+    cursor: default;
+}
+
+body.unreadable {
+    font-family: Mistral;
+}
+
+h1 {
+    font-family: Verdana;
+    font-size: 24pt;
+    color: black;
+    letter-spacing: 1.5mm;
+}
+
+ol {
+    list-style-type: decimal;
+}
+
+ol ol {
+    list-style-type: upper-roman;
+}
+
+table {
+    background-color: white;
+    border-style: solid;
+    border-color: blue;
+    border-width: 2pt;
+	border-spacing: 25px 10px;
+	width: 100%;
+}
+
+tr:hover {
+	background-color: #DDDDFF;
+}
+
+td {
+
+}
+
+th {
+    text-transform: uppercase;
+	text-align: left;
+}
+
+img.left {
+    float: left;
+}
+
+img.right {
+    float: right;
+}
+
+div#title {
+    width: 100%;
+    background-color: #CCCCFF;
+    text-align: center;
+}
+
+div#data {
+    width: 73%;
+    margin-left: 23%;
+    background-color: #EEEEEE;
+    padding: 15px;
+	display: block;
+    position: fixed;
+	min-height: 100%;
+	overflow: scroll;
+}
+
+div#contents {
+	display: block;
+    position: fixed;
+    width: 20%;
+    background-color: #9999EE;
+    height: 100%;
+    text-align: center;
+    padding: 15px;
+}
+
+div#contents li {
+    list-style-type: none;
+    text-align: center;
+    width: 180px;
+    background-color: blue;
+    margin-bottom: 3px;
+	color: white;
+    font-size: 16pt;
+    text-decoration: none;
+    cursor: default;
+}
+
+div#contents p {
+	background-color: #DDFF00;
+	border: #DDFF00 solid 15px;;
+}
+
+div#contents li:hover {
+	background-color: #000099;
+}
+
+textarea {
+	display: inline;
+	width: 90%;
+	vertical-align: top;
+}
